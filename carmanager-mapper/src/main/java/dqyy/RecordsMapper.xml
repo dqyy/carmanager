@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dqyy.RecordsMapper">
+  <resultMap id="BaseResultMap" type="dqyy.Records">
+    <!--@mbg.generated-->
+    <!--@Table Records-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="accountid" jdbcType="INTEGER" property="accountid" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="date" jdbcType="DATE" property="date" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="license" jdbcType="VARCHAR" property="license" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, accountid, info, `date`, money, license
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from Records
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectLikename" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from Records
+    where
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from Records
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Records" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into Records (accountid, info, `date`, 
+      money, license)
+    values (#{accountid,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
+      #{money,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Records" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into Records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountid != null">
+        accountid,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="license != null">
+        license,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountid != null">
+        #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="license != null">
+        #{license,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dqyy.Records">
+    <!--@mbg.generated-->
+    update Records
+    <set>
+      <if test="accountid != null">
+        accountid = #{accountid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=DATE},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="license != null">
+        license = #{license,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dqyy.Records">
+    <!--@mbg.generated-->
+    update Records
+    set accountid = #{accountid,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      `date` = #{date,jdbcType=DATE},
+      money = #{money,jdbcType=INTEGER},
+      license = #{license,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

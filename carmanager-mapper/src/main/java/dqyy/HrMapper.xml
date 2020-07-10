@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dqyy.HrMapper">
+    <resultMap id="BaseResultMap" type="dqyy.Hr">
+        <!--@mbg.generated-->
+        <!--@Table hr-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="accountinfoid" jdbcType="INTEGER" property="accountinfoid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, username, `password`, accountinfoid
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from hr
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectByUsername" parameterType="java.lang.String" resultType="dqyy.Hr">
+        select
+        <include refid="Base_Column_List">
+        </include>
+        from hr
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultType="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from hr
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from hr
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Hr" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr (username, `password`, accountinfoid)
+        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{accountinfoid,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Hr" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into hr
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="accountinfoid != null">
+                accountinfoid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="accountinfoid != null">
+                #{accountinfoid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="dqyy.Hr">
+        <!--@mbg.generated-->
+        update hr
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="accountinfoid != null">
+                accountinfoid = #{accountinfoid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="dqyy.Hr">
+        <!--@mbg.generated-->
+        update hr
+        set username      = #{username,jdbcType=VARCHAR},
+            `password`    = #{password,jdbcType=VARCHAR},
+            accountinfoid = #{accountinfoid,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updatepasswordByPrimaryKey">
+        update hr
+        set password=${pwd}
+        where id = #{id,jdbcType=VARCHAR};
+    </update>
+</mapper>
