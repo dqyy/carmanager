@@ -14,8 +14,7 @@ import java.net.URLEncoder;
 @Configuration
 public class baiduCar {
 
-    @Bean(name = "license")
-    public static String licensePlate(String addr) {
+    public String licensePlate(String addr) {
         // 请求url
         String url = "https://aip.baidubce.com/rest/2.0/ocr/v1/license_plate";
 

@@ -10,10 +10,12 @@
     <result column="date" jdbcType="DATE" property="date" />
     <result column="money" jdbcType="INTEGER" property="money" />
     <result column="license" jdbcType="VARCHAR" property="license" />
+    <result column="carname" jdbcType="VARCHAR" property="carname" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, accountid, info, `date`, money, license
+    id, accountid, info, `date`, money, license, carname, phone
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -21,12 +23,6 @@
     <include refid="Base_Column_List" />
     from Records
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectLikename" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from Records
-    where
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
@@ -36,9 +32,11 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Records" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into Records (accountid, info, `date`, 
-      money, license)
+      money, license, carname, 
+      phone)
     values (#{accountid,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, #{date,jdbcType=DATE}, 
-      #{money,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR})
+      #{money,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR}, #{carname,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Records" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -59,6 +57,12 @@
       <if test="license != null">
         license,
       </if>
+      <if test="carname != null">
+        carname,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="accountid != null">
@@ -75,6 +79,12 @@
       </if>
       <if test="license != null">
         #{license,jdbcType=VARCHAR},
+      </if>
+      <if test="carname != null">
+        #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -97,6 +107,12 @@
       <if test="license != null">
         license = #{license,jdbcType=VARCHAR},
       </if>
+      <if test="carname != null">
+        carname = #{carname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -107,7 +123,9 @@
       info = #{info,jdbcType=VARCHAR},
       `date` = #{date,jdbcType=DATE},
       money = #{money,jdbcType=INTEGER},
-      license = #{license,jdbcType=VARCHAR}
+      license = #{license,jdbcType=VARCHAR},
+      carname = #{carname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

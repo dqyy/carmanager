@@ -1,107 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dqyy.CommodityMapper">
-  <resultMap id="BaseResultMap" type="dqyy.Commodity">
-    <!--@mbg.generated-->
-    <!--@Table commodity-->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="number" jdbcType="VARCHAR" property="number" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="price" jdbcType="INTEGER" property="price" />
-    <result column="stock" jdbcType="INTEGER" property="stock" />
-    <result column="image" jdbcType="VARCHAR" property="image" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, `number`, `name`, price, stock, image
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from commodity
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    <!--@mbg.generated-->
-    delete from commodity
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Commodity" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into commodity (`number`, `name`, price, 
-      stock, image)
-    values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, 
-      #{stock,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Commodity" useGeneratedKeys="true">
-    <!--@mbg.generated-->
-    insert into commodity
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="number != null">
-        `number`,
-      </if>
-      <if test="name != null">
-        `name`,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="stock != null">
-        stock,
-      </if>
-      <if test="image != null">
-        image,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="number != null">
-        #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=INTEGER},
-      </if>
-      <if test="stock != null">
-        #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="image != null">
-        #{image,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="dqyy.Commodity">
-    <!--@mbg.generated-->
-    update commodity
-    <set>
-      <if test="number != null">
-        `number` = #{number,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        price = #{price,jdbcType=INTEGER},
-      </if>
-      <if test="stock != null">
-        stock = #{stock,jdbcType=INTEGER},
-      </if>
-      <if test="image != null">
-        image = #{image,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="dqyy.Commodity">
-    <!--@mbg.generated-->
-    update commodity
-    set `number` = #{number,jdbcType=VARCHAR},
-      `name` = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
-      stock = #{stock,jdbcType=INTEGER},
-      image = #{image,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="dqyy.Commodity">
+        <!--@mbg.generated-->
+        <!--@Table commodity-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="stock" jdbcType="INTEGER" property="stock"/>
+        <result column="image" jdbcType="VARCHAR" property="image"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `number`, `name`, price, stock, image
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from commodity
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectLikename" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from commodity
+        where name = "%"#{name,jdbcType=VARCHAR}"%"
+    </select>
+    <select id="selectByName" resultType="dqyy.Commodity" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from commodity
+        where name=#{name,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select name,price
+        from commodity
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete
+        from commodity
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Commodity" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into commodity (`number`, `name`, price,
+                               stock, image)
+        values (#{number,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER},
+                #{stock,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Commodity" useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into commodity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="number != null">
+                `number`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="image != null">
+                image,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="number != null">
+                #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=INTEGER},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                #{image,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="dqyy.Commodity">
+        <!--@mbg.generated-->
+        update commodity
+        <set>
+            <if test="number != null">
+                `number` = #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=INTEGER},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="image != null">
+                image = #{image,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="dqyy.Commodity">
+        <!--@mbg.generated-->
+        update commodity
+        set `number` = #{number,jdbcType=VARCHAR},
+            `name`   = #{name,jdbcType=VARCHAR},
+            price    = #{price,jdbcType=INTEGER},
+            stock    = #{stock,jdbcType=INTEGER},
+            image    = #{image,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -20,14 +20,14 @@
         from hr
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <select id="selectByUsername" parameterType="java.lang.String" resultType="dqyy.Hr">
+    <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List">
         </include>
         from hr
         where username = #{username,jdbcType=VARCHAR}
     </select>
-    <select id="selectAll" resultType="BaseResultMap">
+    <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from hr
@@ -94,7 +94,7 @@
             accountinfoid = #{accountinfoid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updatepasswordByPrimaryKey">
+    <update id="updatepasswordByPrimaryKey" >
         update hr
         set password=${pwd}
         where id = #{id,jdbcType=VARCHAR};

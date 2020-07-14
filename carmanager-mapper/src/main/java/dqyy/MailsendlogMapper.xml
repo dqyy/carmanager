@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dqyy.MailsendlogMapper">
+  <resultMap id="BaseResultMap" type="dqyy.Mailsendlog">
+    <!--@mbg.generated-->
+    <!--@Table mailsendlog-->
+    <id column="msgid" jdbcType="VARCHAR" property="msgid" />
+    <result column="empid" jdbcType="INTEGER" property="empid" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="routekey" jdbcType="VARCHAR" property="routekey" />
+    <result column="exchange" jdbcType="VARCHAR" property="exchange" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="trytime" jdbcType="DATE" property="trytime" />
+    <result column="createtime" jdbcType="DATE" property="createtime" />
+    <result column="updatetime" jdbcType="DATE" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    msgid, empid, `status`, routekey, exchange, `count`, trytime, createtime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from mailsendlog
+    where msgid = #{msgid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from mailsendlog
+    where msgid = #{msgid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert1" parameterType="dqyy.Mailsendlog">
+    <!--@mbg.generated-->
+    insert into mailsendlog (msgid, empid, `status`, 
+      routekey, exchange, `count`, 
+      trytime, createtime, updatetime
+      )
+    values (#{msgid,jdbcType=VARCHAR}, #{empid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{routekey,jdbcType=VARCHAR}, #{exchange,jdbcType=VARCHAR}, #{count,jdbcType=INTEGER}, 
+      #{trytime,jdbcType=DATE}, #{createtime,jdbcType=DATE}, #{updatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="dqyy.Mailsendlog">
+    <!--@mbg.generated-->
+    insert into mailsendlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="msgid != null">
+        msgid,
+      </if>
+      <if test="empid != null">
+        empid,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="routekey != null">
+        routekey,
+      </if>
+      <if test="exchange != null">
+        exchange,
+      </if>
+      <if test="count != null">
+        `count`,
+      </if>
+      <if test="trytime != null">
+        trytime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="msgid != null">
+        #{msgid,jdbcType=VARCHAR},
+      </if>
+      <if test="empid != null">
+        #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="routekey != null">
+        #{routekey,jdbcType=VARCHAR},
+      </if>
+      <if test="exchange != null">
+        #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="trytime != null">
+        #{trytime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dqyy.Mailsendlog">
+    <!--@mbg.generated-->
+    update mailsendlog
+    <set>
+      <if test="empid != null">
+        empid = #{empid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="routekey != null">
+        routekey = #{routekey,jdbcType=VARCHAR},
+      </if>
+      <if test="exchange != null">
+        exchange = #{exchange,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        `count` = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="trytime != null">
+        trytime = #{trytime,jdbcType=DATE},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=DATE},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where msgid = #{msgid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dqyy.Mailsendlog">
+    <!--@mbg.generated-->
+    update mailsendlog
+    set empid = #{empid,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      routekey = #{routekey,jdbcType=VARCHAR},
+      exchange = #{exchange,jdbcType=VARCHAR},
+      `count` = #{count,jdbcType=INTEGER},
+      trytime = #{trytime,jdbcType=DATE},
+      createtime = #{createtime,jdbcType=DATE},
+      updatetime = #{updatetime,jdbcType=DATE}
+    where msgid = #{msgid,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateMailSendLogStatus">
+    update mailsendlog set status = #{status} where msgId=#{msgId};
+  </update>
+  <insert id="insert" parameterType="dqyy.Mailsendlog">
+    insert into mailsendlog (msgId,empId,routeKey,exchange,tryTime,createTime) values (#{msgId},#{empId},#{routeKey},#{exchange},#{tryTime},#{createTime});
+  </insert>
+
+  <select id="getMailSendLogsByStatus" resultType="dqyy.Mailsendlog">
+    select * from mailsendlog where status=0 and tryTime &lt; sysdate()
+  </select>
+  <update id="updateCount">
+    update mailsendlog set count=count+1,updateTime=#{date} where msgId=#{msgId};
+  </update>
+</mapper>

@@ -34,7 +34,7 @@ public class CarManager {
     }
 
     //车辆录入 判断是否有重复车牌
-    public int insertCar(String addr, String lic, Integer mileage, Date buydate, String car, String code) {
+    public int insertCar(String addr, String lic, Integer mileage, Date buydate, String car, String code, Integer accountid) {
         s = b.licensePlate(addr);
         chepai = new JsonParser().parse(s).getAsJsonObject().get("words_result").getAsJsonObject().get("number").toString();
 
@@ -46,6 +46,7 @@ public class CarManager {
             carinfo.setBuydate(buydate);
             carinfo.setCar(car);
             carinfo.setEnginecode(code);
+            carinfo.setAccountid(accountid);
             Carinfo fla = carinfoMapper.selectByLicense(lic);
             if (fla.getLicense() != null) {
                 if (carinfoMapper.insertSelective(carinfo) != 0) {

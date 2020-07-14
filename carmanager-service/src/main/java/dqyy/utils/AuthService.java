@@ -2,7 +2,6 @@ package dqyy.utils;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,7 +14,6 @@ import java.util.Map;
  * 获取token类
  */
 
-@Component
 public class AuthService {
 
     /**
@@ -29,9 +27,9 @@ public class AuthService {
      */
     public static String getAuth() {
         // 官网获取的 API Key 更新为你注册的
-        String clientId = "2aSdBPAGzkEShsRYua269Wnd";
+        String clientId = "29yGYuO4gn6VptvawZa2ACgS";
         // 官网获取的 Secret Key 更新为你注册的
-        String clientSecret = "9wAVOVRanzgnezCMXTPzfyDioMn13q0z";
+        String clientSecret = "2PalyANa8G9OZVWx7GKE2zjm4QsFBRCp";
         return getAuth(clientId, clientSecret);
     }
 

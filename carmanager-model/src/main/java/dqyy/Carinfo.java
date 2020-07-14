@@ -1,7 +1,6 @@
 package dqyy;
 
 import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +20,6 @@ public class Carinfo {
     private String enginecode;
 
     private String license;
+
+    private Integer accountid;
 }
