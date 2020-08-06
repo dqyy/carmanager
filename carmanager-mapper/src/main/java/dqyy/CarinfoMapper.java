@@ -20,4 +20,6 @@ public interface CarinfoMapper {
     int updateByPrimaryKeySelective(Carinfo record);
 
     int updateByPrimaryKey(Carinfo record);
+
+    List<Carinfo> selectAll();
 }

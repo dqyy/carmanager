@@ -11,6 +11,7 @@
         <result column="enginecode" jdbcType="VARCHAR" property="enginecode"/>
         <result column="license" jdbcType="VARCHAR" property="license"/>
         <result column="accountid" jdbcType="INTEGER" property="accountid"/>
+
     </resultMap>
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
@@ -35,6 +36,11 @@
         from carinfo
         where license like "%"#{license,jdbcType=VARCHAR}"%"
     </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"></include>
+        from  carinfo
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         <!--@mbg.generated-->
         delete
@@ -44,9 +50,9 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="dqyy.Carinfo" useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into carinfo (car, buydate, mileage,
-                             enginecode, license, accountid)
+        enginecode, license, accountid)
         values (#{car,jdbcType=VARCHAR}, #{buydate,jdbcType=DATE}, #{mileage,jdbcType=INTEGER},
-                #{enginecode,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, #{accountid,jdbcType=INTEGER})
+        #{enginecode,jdbcType=VARCHAR}, #{license,jdbcType=VARCHAR}, #{accountid,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="dqyy.Carinfo" useGeneratedKeys="true">
         <!--@mbg.generated-->
@@ -120,12 +126,12 @@
     <update id="updateByPrimaryKey" parameterType="dqyy.Carinfo">
         <!--@mbg.generated-->
         update carinfo
-        set car        = #{car,jdbcType=VARCHAR},
-            buydate    = #{buydate,jdbcType=DATE},
-            mileage    = #{mileage,jdbcType=INTEGER},
-            enginecode = #{enginecode,jdbcType=VARCHAR},
-            license    = #{license,jdbcType=VARCHAR},
-            accountid  = #{accountid,jdbcType=INTEGER}
+        set car = #{car,jdbcType=VARCHAR},
+        buydate = #{buydate,jdbcType=DATE},
+        mileage = #{mileage,jdbcType=INTEGER},
+        enginecode = #{enginecode,jdbcType=VARCHAR},
+        license = #{license,jdbcType=VARCHAR},
+        accountid = #{accountid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

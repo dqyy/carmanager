@@ -22,4 +22,8 @@ public class Carinfo {
     private String license;
 
     private Integer accountid;
+    //临时增加属性
+    private String name;
+
+
 }
