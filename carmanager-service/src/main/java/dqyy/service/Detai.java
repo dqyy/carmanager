@@ -3,12 +3,16 @@ package dqyy.service;
 import dqyy.Hr;
 import dqyy.HrMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import sun.security.util.Password;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,15 +33,35 @@ public class Detai implements UserDetailsService {
 
     }
 
+    //判断用户是否存在
+    public String cheackUser(String username) {
+        Hr hr = this.hr.selectByUsername(username);
+        if (hr == null) {
+            return "ok";
+        }
+        return "no";
+
+    }
+
+    //判断用户名密码
+    public Hr cheackUserAndPasswd(String username, String password) {
+        return hr.cheack(username, password);
+
+    }
+
 
     //验证用户名是否存在
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Hr hra = hr.selectByUsername(username);
-        if (hr == null) {
+        if (hra == null) {
             throw new UsernameNotFoundException("用户名没有找到");
         }
-        return (UserDetails) hra;
+        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+
+        User user = new User(hra.getUsername(), hra.getPassword(), grantedAuthorities);
+
+        return user;
     }
 
     //修改密码

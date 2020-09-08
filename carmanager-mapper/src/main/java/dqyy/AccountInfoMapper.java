@@ -11,7 +11,7 @@ public interface AccountInfoMapper {
 
     int insertSelective(AccountInfo record);
 
-    AccountInfo selectByPrimaryKey(Byte id);
+    AccountInfo selectByPrimaryKey(Integer id);
 
     List<AccountInfo> selectAll();
 

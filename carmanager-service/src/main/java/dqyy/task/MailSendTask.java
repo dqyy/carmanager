@@ -34,7 +34,8 @@ public class MailSendTask {
                 mailSendLogService.updateMailSendLogStatus(mailSendLog.getMsgid(), 2);//直接设置该条消息发送失败
             } else {
                 mailSendLogService.updateCount(mailSendLog.getMsgid(), new Date());
-                AccountInfo byId = cus.findById(new Byte(String.valueOf(mailSendLog.getEmpid())));
+                AccountInfo byId = cus.findById(mailSendLog.getEmpid());
+                //new Byte(String.valueOf(mailSendLog.getEmpid()))
                 rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME, byId, new CorrelationData(mailSendLog.getMsgid()));
             }
         });

@@ -11,7 +11,12 @@ import dqyy.utils.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.codec.Utf8;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +36,7 @@ public class CarController {
         return code + s + "}";
     }
 
+
     @GetMapping(value = "/findcar", produces = {"application/json;charset=UTF-8"})
     public List<Carinfo> getByliscen(String lis) {
         return carManager.findLikeByLiscen(lis);
@@ -48,4 +54,27 @@ public class CarController {
     }
 
 
+    //    @RequestMapping(value = "/accarinfo/{accid}",produces = "text/plain;charset=utf-8")
+    @GetMapping("/accarinfo")
+    @ResponseBody
+//   @PathVariable("accid" )
+    public String findByacc(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        Object id = session.getAttribute("accountid");
+        Object name = session.getAttribute("username");
+//       System.out.println(id);
+        System.out.println(name);
+        List<Carinfo> carinfos = carManager.selectByAccountId((Integer) id);
+        List<Carinfo> c = new ArrayList<Carinfo>();
+        for (Carinfo carinfo : carinfos) {
+            Integer accountid = carinfo.getAccountid();
+            if (id == accountid) {
+                c.add(carinfo);
+            }
+        }
+        int count = c.size();
+        String code = "{\"code\":0,\"msg\":\"\",\"count\":" + count + ",\"data\":";
+        String s = JSON.toJSONString(c);
+        return code + s + "}";
+    }
 }

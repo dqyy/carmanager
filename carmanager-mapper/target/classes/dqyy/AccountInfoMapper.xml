@@ -16,14 +16,14 @@
     <!--@mbg.generated-->
     id, `name`, sex, phone, addr, email, wechat
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />
     from accountInfo
     where id = #{id,jdbcType=TINYINT}
   </select>
-  <select id="selectAll" parameterType="java.lang.Byte" resultMap="BaseResultMap">
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <include refid="Base_Column_List" />

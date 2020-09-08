@@ -41,6 +41,11 @@
         <include refid="Base_Column_List"></include>
         from  carinfo
     </select>
+    <select id="selectLikeAccountId" resultType="dqyy.Carinfo" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"></include>
+        from carinfo
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         <!--@mbg.generated-->
         delete

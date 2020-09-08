@@ -32,6 +32,13 @@
         <include refid="Base_Column_List"/>
         from hr
     </select>
+    <select id="cheack" parameterType="java.lang.String" resultType="dqyy.Hr">
+        select
+        <include refid="Base_Column_List"/>
+        from hr
+        where username = #{param1,jdbcType=VARCHAR}
+          and password = #{param2,jdbcType=VARCHAR}
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         <!--@mbg.generated-->
@@ -94,7 +101,7 @@
             accountinfoid = #{accountinfoid,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updatepasswordByPrimaryKey" >
+    <update id="updatepasswordByPrimaryKey">
         update hr
         set password=${pwd}
         where id = #{id,jdbcType=VARCHAR};

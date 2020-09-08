@@ -16,6 +16,8 @@ public interface HrMapper {
 
     Hr selectByUsername(String username);
 
+    Hr cheack(String username, String password);
+
     List<Hr> selectAll();
 
     int updateByPrimaryKeySelective(Hr record);

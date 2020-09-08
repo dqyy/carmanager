@@ -35,10 +35,18 @@ public class CustomerManager {
     }
 
     //客户查询
-    public AccountInfo findById(byte id) {
+    public AccountInfo findById(Integer id) {
         AccountInfo accountInfo = mapper.selectByPrimaryKey(id);
         return accountInfo;
     }
+
+    //增加客户2
+    public int insertCustomer(AccountInfo info) {
+        int i = mapper.insertSelective(info);
+        return i;
+    }
+
+    ;
 
     //增加客户
 

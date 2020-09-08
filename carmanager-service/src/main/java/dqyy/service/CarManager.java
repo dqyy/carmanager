@@ -45,7 +45,7 @@ public class CarManager {
         List<Carinfo> xin = new ArrayList<>();
         List<Carinfo> carinfos = carinfoMapper.selectAll();
         for (Carinfo c : carinfos) {
-            AccountInfo accountInfo = acac.selectByPrimaryKey(new Byte(String.valueOf(c.getId())));
+            AccountInfo accountInfo = acac.selectByPrimaryKey(c.getId());
             String name = accountInfo.getName();
             c.setName(name);
             xin.add(c);
@@ -121,6 +121,11 @@ public class CarManager {
             return 1;
         }
         return 0;
+    }
+
+    //查找车辆根据客户
+    public List<Carinfo> selectByAccountId(Integer accid) {
+        return carinfoMapper.selectLikeAccountId(accid);
     }
 
 

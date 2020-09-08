@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AccountInfo {
     private static final long serialVersionUID = 1594170358227L;
-    private Byte id;
+    private Integer id;
 
     private String name;
 

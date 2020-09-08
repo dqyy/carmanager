@@ -17,6 +17,9 @@ public interface CarinfoMapper {
 
     List<Carinfo> selectLikeLicense(String license);
 
+    List<Carinfo> selectLikeAccountId(Integer accountid);
+
+
     int updateByPrimaryKeySelective(Carinfo record);
 
     int updateByPrimaryKey(Carinfo record);
